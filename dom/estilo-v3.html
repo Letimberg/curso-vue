@@ -1,7 +1,7 @@
 <script src="https://unpkg.com/vue"></script>
 
 <style>
-    #app {
+    .caixas {
         display: flex;
         justify-content: space-around;
     }
@@ -22,14 +22,24 @@
     .c3 {
         background-color: blue;
     }
+
+    .girar {
+        transform: rotate(45deg);
+    }
 </style>
 
 <div id="app">
-    <!-- Posso ter esses dois tipo de class, 1 chamando por '' e o outro ssó abreviando sem - -->
-    <div class="demo" :class="estilo1"
-    @click="aplicarC1 = !aplicarC1"></div>
-    <div class="demo"></div>
-    <div class="demo"></div>
+    <div class="caixas">
+        <div class="demo" :class="estilo1"
+        @click="aplicarC1 = !aplicarC1"></div>
+        <div class="demo" :class="estilo1"></div>
+        <div class="demo" :class="[classesCSS, {girar: aplicarGirar}]"></div>
+    </div>
+
+    <hr>
+
+    <input type="text" v-model="classesCSS">
+
 </div>
 
 <script>
@@ -37,6 +47,8 @@
         el: '#app',
         data: {
             aplicarC1: false,
+            classesCSS: "c1",
+            aplicarGirar: true
         },
         computed: {
             estilo1() {
