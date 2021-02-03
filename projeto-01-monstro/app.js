@@ -2,7 +2,7 @@ new Vue({
     el: '#app',
     data: {
         running: false,
-        playerLife: 100,
+        playerLife: 10,
         monsterLife: 100,
         logs:[]
     },
