@@ -1,14 +1,17 @@
 <template>
 	<div id="app">
 		<span>
-			<button @click="componente = 'Vermelho'" class="vermelho">Carregar Componente Vermelho</button>
-			<button @click="componente = 'Verde'" class="verde">Carregar Componente Verde</button>
-			<button @click="componente = 'Azul'" class="azul">Carregar Componente Azul</button>
+			<button class="vermelho" @click="componente = 'Vermelho'">
+				Carregar Componente Vermelho</button>
+			<button class="verde" @click="componente = 'Verde'">
+				Carregar Componente Verde</button>
+			<button class="azul" @click="componente = 'Azul'">
+				Carregar Componente Azul</button>
 		</span>
 
 				
 		<component :is="componente">
-			<span>Conteúdo do Comspanonente <strong>{{ componente }}</strong> </span>
+			<span slot="conteudo">Conteúdo do Comspanonente <strong>{{ componente }}</strong> </span>
 		</component>				
 	</div>
 </template>
