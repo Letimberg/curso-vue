@@ -8,7 +8,6 @@
 </template>
 
 <script>
-
 import barramento from "@/barramento"
 
 export default {
