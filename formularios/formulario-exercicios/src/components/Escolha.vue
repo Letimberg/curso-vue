@@ -1,17 +1,18 @@
 <template>
     <div class="escolha"
-        @click="ligado = !ligado"
-        :class="{ligado, desligado: !ligado}">
-        <div v-if="ligado" class="botao"></div>
+        @click="$emit('input', !value)"
+        :class="{value, desligado: !value}">
+        <div v-if="value" class="botao"></div>
         <div v-else class="botao"></div>
     </div>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            ligado: false
+    props: {
+        value: {
+            type: Boolean,
+            rquired: true
         }
     }
 }
@@ -43,7 +44,7 @@ export default {
         background-color: #AAA;
     }
 
-    .ligado {
+    .value {
         background-color: #7495c2;
     }
 
@@ -51,7 +52,7 @@ export default {
         left: -10px;
     }
 
-    .ligado .botao {
+    .value .botao {
         background-color: #255ca9;
         right: -10px;
         align-self: flex-end;
