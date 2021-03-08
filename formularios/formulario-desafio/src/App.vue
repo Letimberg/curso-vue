@@ -2,21 +2,10 @@
 	<div id="app">
 		<h1>Projeto: Hemoce Inovador</h1>
 		<div class="conteudo">
-			<form class="painel">
+			<form class="painel" v-if="!enviado">
 				<div class="cabecalho">Formulário</div>
-				<!-- Exercicio 01 -->
-				<!-- Criar uma formulário de registro -->
-				<!-- Nome completo (Nome e Sobrenome) -->
-				<!-- Email -->
-				<!-- Senha -->
-				<!-- Armazenar Dados? (Sim/Não) -->
 	
-				<Rotulo nome="Nome">
-					<input type="text" v-model="nome">
-				</Rotulo>
-				<Rotulo nome="Sobrenome">
-					<input type="text" v-model="sobrenome">
-				</Rotulo>
+				<NomeCompleto v-model="nomeCompleto" />
 	
 				<Rotulo nome="Email">
 					<input type="text" v-model="email">
@@ -27,26 +16,30 @@
 				</Rotulo>
 	
 				<Rotulo nome="Armazenar Dados">
-					<input type="checkbox" v-model="ArmazenarDados">
+					<input type="checkbox" v-model="armazenarDados">
 				</Rotulo>
 	
-	
-	
-				<!-- Exercicio 02 -->
-				<!-- Só mostrar o fomulário de não tiver sido submetido -->
-				<!-- Mostrar a área de Resultado apenas quando o formulário for submetido -->
-	
-				<!-- Exercicio 03 -->
-				<!-- Crie um componente personalizado NomeCompleto -->
-				<!-- Esse componente deve receber Nome e Sobrenome -->
+				<hr>
+				<button @click.prevent="enviar">Enviar</button>
 			</form>
-			<div class="painel">
+			
+			<div class="painel" v-else>
 				<div class="cabecalho">Resultado</div>
-				<Rotulo nome="Armazenar Dados">
-					<input type="checkbox" v-model="ArmazenarDados">
-					<span>{{  }}</span>
+				<Rotulo nome="Nome">
+					<span>{{ nomeCompleto.nome }}</span>
 				</Rotulo>
-	
+				<Rotulo nome="Sobrenome">
+					<span>{{ nomeCompleto.sobrenome }}</span>
+				</Rotulo>
+				<Rotulo nome="Email">
+					<span>{{ email }}</span>
+				</Rotulo>
+				<Rotulo nome="Senha">
+					<span>{{ senha }}</span>
+				</Rotulo>
+				<Rotulo nome="Armazenar Dados">
+					<span>{{ armazenarDados  }}</span>
+				</Rotulo>
 			</div>
 		</div>
 	</div>
@@ -54,17 +47,26 @@
 
 <script>
 import Rotulo from './components/Rotulo.vue'
+import NomeCompleto from './components/NomeCompleto.vue'
 
 export default {
 	name: 'app',
-	components: { Rotulo },
+	components: { NomeCompleto, Rotulo },
 	data() {
 		return {
-			nome: '',
-			sobrenome: '',
+			enviado: false,
+			nomeCompleto: {
+				nome: '',
+				sobrenome: ''
+			},
 			email: '',
 			senha: '',
 			armazenarDados: true,
+		}
+	},
+	methods: {
+		enviar() {
+			this.enviado = true
 		}
 	}
 }
